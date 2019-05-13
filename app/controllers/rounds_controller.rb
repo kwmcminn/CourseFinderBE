@@ -3,7 +3,7 @@ class RoundsController < ApplicationController
    before_action :set_round, only: [:edit, :update, :show]
 
    def index
-     @rounds = Round.all
+     @rounds = Round.all.sort_by {|obj| obj.id}.reverse
      render json: @rounds
    end
 
@@ -16,17 +16,18 @@ class RoundsController < ApplicationController
      @round = Round.create(post_params)
      (1..(params[:hole_amount].to_i)).each do |x|
         Hole.create(hole_number: x, total: 0, round_id: @round.id)
-   end
-   render json: @round
+    end
+    @rounds = Round.all.sort_by {|obj| obj.id}.reverse
+   render json: @rounds
    end
 
    def edit
    end
 
-   def update
-     byebug
-     @round.update(post_params)
-     redirect_to @round
+   def destroy
+      Round.destroy(params[:id])
+      @rounds = Round.all.sort_by {|obj| obj.id}.reverse
+      render json: @rounds
    end
 
 
