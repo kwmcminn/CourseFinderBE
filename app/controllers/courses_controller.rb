@@ -2,14 +2,14 @@ class CoursesController < ApplicationController
    def index
       lat = params[:lat]
       lng = params[:lng]
-      response = HTTParty.get("http://api.pdga.com/services/json/course?limit=15&latitude=#{lat}&longitude=#{lng}", headers: { 'Cookie' => 'SSESSf1f85588bb869a1781d21eec9fef1bff=g-LbmyMgCjXlIRMFQrfwY8yvb3vYBjOHDIx7LC57t9Q' })
+      response = HTTParty.get("http://api.pdga.com/services/json/course?limit=15&latitude=#{lat}&longitude=#{lng}", headers: { 'Cookie' => 'SSESSf1f85588bb869a1781d21eec9fef1bff=Z4b1sRKNCHNWQBiObRyzhHgWqnDoCTgGBnvqbJAIQgc' })
       puts response.body
       render json: response.body
    end
 
    def user_courses
       course = params[:course_id]
-      response = HTTParty.get("http://api.pdga.com/services/json/course?course_id=#{course}", headers: { 'Cookie' => 'SSESSf1f85588bb869a1781d21eec9fef1bff=g-LbmyMgCjXlIRMFQrfwY8yvb3vYBjOHDIx7LC57t9Q' })
+      response = HTTParty.get("http://api.pdga.com/services/json/course?course_id=#{course}", headers: { 'Cookie' => 'SSESSf1f85588bb869a1781d21eec9fef1bff=Z4b1sRKNCHNWQBiObRyzhHgWqnDoCTgGBnvqbJAIQgc' })
       render json: response.body
    end
 
